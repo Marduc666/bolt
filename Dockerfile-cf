@@ -1,0 +1,25 @@
+FROM node:20.18.0
+
+WORKDIR /app
+
+RUN corepack enable pnpm && \
+    npm install -g wrangler corepack@latest
+
+COPY package.json pnpm-lock.yaml ./
+
+RUN pnpm install
+
+COPY . .
+
+RUN tr -d '\r' < bindings.sh > bindings.tmp && \
+    mv bindings.tmp bindings.sh && \
+    chmod +x bindings.sh
+
+RUN pnpm run build
+
+EXPOSE 5173
+
+ENV NODE_ENV=production \
+    RUNNING_IN_DOCKER=true
+
+CMD ["pnpm", "run", "dockerstart"]
