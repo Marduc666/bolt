@@ -22,7 +22,10 @@ services:
       - VITE_LOG_LEVEL=${VITE_LOG_LEVEL:-debug}
       - DEFAULT_NUM_CTX=${DEFAULT_NUM_CTX:-32768}
     restart: unless-stopped
-
+    labels:
+      - coolify.traefik.middlewares=crowdsec@file    
+      - traefik.http.middlewares.tinyauth@file
+      
   app-dev:
     image: bolt-ai:development
     build:
