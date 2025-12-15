@@ -5,7 +5,7 @@ WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
 
 # Enable pnpm via corepack (comes with Node.js)
-RUN corepack enable pnpm && pnpm install
+#RUN corepack enable pnpm && pnpm install
 
 COPY . .
 
