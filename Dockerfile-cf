@@ -4,21 +4,20 @@ WORKDIR /app
 
 COPY package.json pnpm-lock.yaml ./
 
-# Enable pnpm via corepack (comes with Node.js)
-#RUN corepack enable pnpm && pnpm install
+RUN corepack enable pnpm && pnpm install
 
 COPY . .
 
-# Install wrangler globally
-RUN npm install -g wrangler
+EXPOSE 5173
+
+RUN mkdir -p /root/.config/.wrangler && \
+    echo '{"enabled":false}' > /root/.config/.wrangler/metrics.json
 
 RUN tr -d '\r' < bindings.sh > bindings.tmp && \
     mv bindings.tmp bindings.sh && \
     chmod +x bindings.sh
 
-#RUN npm run build
-
-EXPOSE 5173
+RUN npm run build
 
 ENV NODE_ENV=production \
     RUNNING_IN_DOCKER=true
