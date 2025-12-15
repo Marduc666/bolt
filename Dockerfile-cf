@@ -11,10 +11,10 @@ COPY package.json pnpm-lock.yaml ./
 #RUN corepack install
 
 # Install wrangler globally
-RUN npm install -g wrangler
+#RUN npm install -g wrangler
 
 # Install project dependencies
-RUN pnpm install
+#RUN pnpm install
 
 COPY . .
 
