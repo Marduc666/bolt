@@ -2,14 +2,16 @@ FROM node:25.2.1
 
 WORKDIR /app
 
-RUN corepack enable pnpm && \
-    npm install -g wrangler corepack@latest
+# Enable corepack and prepare pnpm
+RUN corepack enable && \
+    corepack prepare pnpm@latest --activate && \
+    npm install -g wrangler
 
 COPY package.json pnpm-lock.yaml ./
 
 RUN pnpm install
 
-COPY . .
+COPY . . 
 
 RUN tr -d '\r' < bindings.sh > bindings.tmp && \
     mv bindings.tmp bindings.sh && \
