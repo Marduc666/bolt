@@ -3,7 +3,7 @@ FROM node:25.2.1
 WORKDIR /app
 
 # Enable pnpm via corepack (comes with Node.js)
-RUN corepack enable && corepack prepare pnpm@9.4.0 --activate
+RUN corepack enable && corepack prepare npm@9.4.0 --activate
 
 # Install wrangler globally
 RUN npm install -g wrangler
