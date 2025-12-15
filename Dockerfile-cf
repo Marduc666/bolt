@@ -3,7 +3,7 @@ FROM node:25.2.1
 WORKDIR /app
 
 # Enable corepack (comes with Node.js)
-RUN corepack enable
+#RUN corepack enable
 
 COPY package.json pnpm-lock.yaml ./
 
