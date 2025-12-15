@@ -16,7 +16,7 @@ RUN tr -d '\r' < bindings.sh > bindings.tmp && \
     mv bindings.tmp bindings.sh && \
     chmod +x bindings.sh
 
-RUN npm run build
+#RUN npm run build
 
 EXPOSE 5173
 
