@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
 
 # Corepack will read packageManager field and install the correct pnpm version
-RUN corepack install
+#RUN corepack install
 
 # Install wrangler globally
 RUN npm install -g wrangler
