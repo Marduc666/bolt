@@ -6,7 +6,7 @@ COPY package.json pnpm-lock.yaml ./
 
 RUN npm install -g corepack
 RUN corepack cache clean
-RUN corepack enable
+RUN corepack enable pnpm && pnpm install
 
 COPY . .
 
@@ -15,7 +15,7 @@ EXPOSE 5173
 RUN mkdir -p /root/.config/.wrangler && \
     echo '{"enabled":false}' > /root/.config/.wrangler/metrics.json
 
-RUN npm run build
+RUN pnpm run build
 
 ENV NODE_ENV=production \
     RUNNING_IN_DOCKER=true
