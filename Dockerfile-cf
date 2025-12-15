@@ -2,11 +2,8 @@ FROM node:25.2.1
 
 WORKDIR /app
 
-# Enable pnpm via corepack (comes with Node.js)
-RUN corepack enable && corepack prepare pnpm@9.4.0 --activate
-
-# Install wrangler globally
-RUN npm install -g wrangler
+# Install pnpm directly without corepack
+RUN npm install -g pnpm@9.4.0 wrangler
 
 COPY package.json pnpm-lock.yaml ./
 
