@@ -5,7 +5,7 @@ WORKDIR /app
 # Enable corepack (comes with Node.js)
 RUN corepack enable
 
-COPY package.json pnpm-lock. yaml ./
+COPY package.json pnpm-lock.yaml ./
 
 # Corepack will read packageManager field and install the correct pnpm version
 RUN corepack install
